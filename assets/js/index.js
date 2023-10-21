@@ -90,6 +90,9 @@ function editCustomer(index) {
     inputPhone.value = customerToEdit.phone;
     inputEmail.value = customerToEdit.emailCustomer;
     inputImagen.value = customerToEdit.imagen;
+    inputIndustry.value = customerToEdit.industry;
+    inputNameContact.value = customerToEdit.nameContact;
+    inputDescription.value = customerToEdit.description;
     indexEdit = index;
     // Reto: separa la funcionalidad de llenar el formulario a una funcion individual como lo hicimos con la de limpiarFormularioPeliculas
 }
@@ -120,7 +123,9 @@ function showCustomers() {
                          <div class="card-body">
                             <h5 class="card-title">${customer.nameCustomer}</h5>
                             <h6 class="card-subtitle mb-2 text-body-secondary">${customer.street} - ${customer.phone}</h6>
-                            <p class="card-text">${customer.emailCustomer   }</p>
+                            <p class="card-text">${customer.nameContact}</p>
+                            <p class="card-text">${customer.industry}</p>
+                            <p class="card-text">${customer.description}</p>
                             <div class="row mb-2">
                                <div class="col">
                                   <button class="btn btn-warning w-100 mt-2" type="button" id="editar-${index}" onclick="editCustomer(${index})">Editar</button>
@@ -144,6 +149,9 @@ function cleanFormCustomers() {
     inputPhone.value = "";
     inputEmail.value = "";
     inputImagen.value = "";
+    inputIndustry.value = "";
+    inputNameContact.value = "";
+    inputDescription.value = "";
 }
 
 
