@@ -128,7 +128,7 @@ function showCustomers() {
                             <p class="card-text">${customer.description}</p>
                             <div class="row mb-2">
                                <div class="col">
-                                  <button class="btn btn-warning w-100 mt-2" type="button" id="editar-${index}" onclick="editCustomer(${index})">Editar</button>
+                                  <button class="btn btn-warning w-100 mt-2" type="button" id="editar-${index}" onclick="editCustomer(${index})">Actualizar/Editar</button>
                                </div>
                                <div class="col">
                                   <button class="btn btn-danger w-100 mt-2" type="button" id="eliminar-${index}" onclick="deleteCustomer(${index})">Eliminar</button>
