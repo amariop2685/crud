@@ -1,117 +1,117 @@
 console.log("Entro index.js");
 
-let peliculas = JSON.parse(localStorage.getItem("peliculas")) || [];
+let customers = JSON.parse(localStorage.getItem("customers")) || [];
 // Estos son las referencias a mis inputs
-const inputTitulo = document.getElementById("inputTitulo");
-const inputEstreno = document.getElementById("inputEstreno");
-const inputGenero = document.getElementById("inputGenero");
+const inputCustomer = document.getElementById("inputCustomer");
+const inputStreet = document.getElementById("inputStreet");
+const inputPhone = document.getElementById("inputPhone");
+const inputEmail = document.getElementById("inputEmail");
 const inputImagen = document.getElementById("inputImagen");
-const inputSinopsis = document.getElementById("inputSinopsis");
 
 // Estas son las referencias a mis botones
-const btnAgregar = document.getElementById("btnAgregar");
-const btnBorrarTodo = document.getElementById("btnBorrarTodo");
+const btnAdd = document.getElementById("btnAdd");
+const btnEraseAll = document.getElementById("btnEraseAll");
 
-const divPeliculas = document.getElementById("divPeliculas");
-const alertSinPeliculas = document.getElementById("alertSinPeliculas");
+const divCustomers = document.getElementById("divCustomers");
+const alertNoCustomers = document.getElementById("alertNoCustomers");
 
-let indexEditar = null;
+let indexEdit = null;
 
-class Pelicula {
-    constructor(titulo, estreno, genero, imagen, sinopsis) {
-        this.titulo = titulo;
-        this.estreno = estreno;
-        this.genero = genero;
+class Customer {
+    constructor(nameCustomer, street, phone, emailCustomer, imagen) {
+        this.nameCustomer = nameCustomer;
+        this.street = street;
+        this.phone = phone;
+        this.emailCustomer = emailCustomer;
         this.imagen = imagen;
-        this.sinopsis = sinopsis;
     }
 }
 
 
-function guardarPelicula() {
-    let titulo = inputTitulo.value;
-    let estreno = inputEstreno.value;
-    let genero = inputGenero.value;
+function saveCustomer() {
+    let nameCustomer = inputCustomer.value;
+    let street = inputStreet.value;
+    let phone = inputPhone.value;
+    let emailCustomer = inputEmail.value;
     let imagen = inputImagen.value;
-    let sinopsis = inputSinopsis.value;
 
-    let pelicula = new Pelicula(
-        titulo,
-        estreno,
-        genero,
-        imagen,
-        sinopsis
+    let customer = new Customer(
+        nameCustomer,
+        street,
+        phone,
+        emailCustomer,
+        imagen
     );
-    console.log(pelicula);
+    console.log(customer);
 
-    if (indexEditar === null) {
+    if (indexEdit === null) {
         console.log("Agregar pelicula");
-        peliculas.push(pelicula);
+        customers.push(customer);
     } else {
-        peliculas[indexEditar] = pelicula;
-        indexEditar = null;
+        customers[indexEdit] = customer;
+        indexEdit = null;
         console.log("Editar pelicula");
     }
-    limpiarFormularioPeliculas();
-    localStorage.setItem("peliculas", JSON.stringify(peliculas))
+    cleanFormCustomers();
+    localStorage.setItem("customers", JSON.stringify(customers))
     console.log("Entro funcion guardar pelicula");
-    mostrarPeliculas();
+    showCustomers();
 }
 
-function borrarTodo() {
-    console.log("Entro a brorar todo");
+function EraseAll() {
+    console.log("Entro a borrar todo");
     localStorage.clear();
-    peliculas = [];
-    mostrarPeliculas();
+    customers = [];
+    showCustomers();
     alert("Se borrraron las peliculas");
 }
 
-function editarPelicula(index) {
+function editCustomer(index) {
     console.log("Entro editar pelicula:" + index);
-    let peliculaAEditar = peliculas[index];
-    console.log(peliculaAEditar, "peliculaAEditar");
-    inputTitulo.value = peliculaAEditar.titulo;
-    inputEstreno.value = peliculaAEditar.estreno;
-    inputGenero.value = peliculaAEditar.genero;
-    inputImagen.value = peliculaAEditar.imagen;
-    inputSinopsis.value = peliculaAEditar.sinopsis;
-    indexEditar = index;
+    let customerToEdit = customers[index];
+    console.log(customerToEdit, "customerToEdit");
+    inputCustomer.value = customerToEdit.nameCustomer;
+    inputStreet.value = customerToEdit.street;
+    inputPhone.value = customerToEdit.phone;
+    inputEmail.value = customerToEdit.emailCustomer;
+    inputImagen.value = customerToEdit.imagen;
+    indexEdit = index;
     // Reto: separa la funcionalidad de llenar el formulario a una funcion individual como lo hicimos con la de limpiarFormularioPeliculas
 }
 
-function eliminarPelicula(index) {
-    console.log("Entro elimnar pelicula:" + index);
-    peliculas.splice(index, 1);
-    localStorage.setItem("peliculas",JSON.stringify(peliculas));
-    mostrarPeliculas();
+function deleteCustomer(index) {
+    console.log("Entro eliminar pelicula:" + index);
+    customers.splice(index, 1);
+    localStorage.setItem("customers",JSON.stringify(customers));
+    showCustomers();
 }
 
-function mostrarPeliculas() {
-    if (peliculas.length === 0) {
-        divPeliculas.innerHTML = `
-        <div class="alert alert-primary" role="alert" id="alertSinPeliculas">
+function showCustomers() {
+    if (customers.length === 0) {
+        divCustomers.innerHTML = `
+        <div class="alert alert-primary" role="alert" id="alertNoCustomers">
             No hay peliculas agregadas
         </div>`;
     } else {
-        divPeliculas.innerHTML = "";
-        peliculas.forEach((pelicula, index) => {
-            divPeliculas.innerHTML += `
+        divCustomers.innerHTML = "";
+        customers.forEach((customer, index) => {
+            divCustomers.innerHTML += `
                 <div class="card mb-3">
                    <div class="row g-0">
                       <div class="col-md-4">
-                         <img src="${pelicula.imagen}" class="img-fluid rounded-start" alt="pelicula">
+                         <img src="${customer.imagen}" class="img-fluid rounded-start" alt="customer">
                       </div>
                       <div class="col-md-8">
                          <div class="card-body">
-                            <h5 class="card-title">${pelicula.titulo}</h5>
-                            <h6 class="card-subtitle mb-2 text-body-secondary">${pelicula.estreno} - ${pelicula.genero}</h6>
-                            <p class="card-text">${pelicula.sinopsis}</p>
+                            <h5 class="card-title">${customer.nameCustomer}</h5>
+                            <h6 class="card-subtitle mb-2 text-body-secondary">${customer.street} - ${customer.phone}</h6>
+                            <p class="card-text">${pelicula.naneCustomer}</p>
                             <div class="row mb-2">
                                <div class="col">
-                                  <button class="btn btn-warning w-100 mt-2" type="button" id="editar-${index}" onclick="editarPelicula(${index})">Editar</button>
+                                  <button class="btn btn-warning w-100 mt-2" type="button" id="editar-${index}" onclick="editCustomer(${index})">Editar</button>
                                </div>
                                <div class="col">
-                                  <button class="btn btn-danger w-100 mt-2" type="button" id="eliminar-${index}" onclick="eliminarPelicula(${index})">Eliminar</button>
+                                  <button class="btn btn-danger w-100 mt-2" type="button" id="eliminar-${index}" onclick="deleteCustomer(${index})">Eliminar</button>
                                </div>
                             </div>
                          </div>
