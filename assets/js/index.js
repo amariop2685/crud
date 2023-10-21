@@ -45,29 +45,29 @@ function saveCustomer() {
     console.log(customer);
 
     if (indexEdit === null) {
-        console.log("Agregar pelicula");
+        console.log("Agregar Cliente");
         customers.push(customer);
     } else {
         customers[indexEdit] = customer;
         indexEdit = null;
-        console.log("Editar pelicula");
+        console.log("Editar Cliente");
     }
     cleanFormCustomers();
     localStorage.setItem("customers", JSON.stringify(customers))
-    console.log("Entro funcion guardar pelicula");
+    console.log("Entro funcion guardar cliente");
     showCustomers();
 }
 
-function EraseAll() {
+function eraseAll() {
     console.log("Entro a borrar todo");
     localStorage.clear();
     customers = [];
     showCustomers();
-    alert("Se borrraron las peliculas");
+    alert("Se borrraron los clientes");
 }
 
 function editCustomer(index) {
-    console.log("Entro editar pelicula:" + index);
+    console.log("Entro editar cliente:" + index);
     let customerToEdit = customers[index];
     console.log(customerToEdit, "customerToEdit");
     inputCustomer.value = customerToEdit.nameCustomer;
@@ -80,7 +80,7 @@ function editCustomer(index) {
 }
 
 function deleteCustomer(index) {
-    console.log("Entro eliminar pelicula:" + index);
+    console.log("Entro eliminar cliente:" + index);
     customers.splice(index, 1);
     localStorage.setItem("customers",JSON.stringify(customers));
     showCustomers();
@@ -90,7 +90,7 @@ function showCustomers() {
     if (customers.length === 0) {
         divCustomers.innerHTML = `
         <div class="alert alert-primary" role="alert" id="alertNoCustomers">
-            No hay peliculas agregadas
+            No hay clientes agregadas
         </div>`;
     } else {
         divCustomers.innerHTML = "";
@@ -105,7 +105,7 @@ function showCustomers() {
                          <div class="card-body">
                             <h5 class="card-title">${customer.nameCustomer}</h5>
                             <h6 class="card-subtitle mb-2 text-body-secondary">${customer.street} - ${customer.phone}</h6>
-                            <p class="card-text">${pelicula.naneCustomer}</p>
+                            <p class="card-text">${customer.emailCustomer   }</p>
                             <div class="row mb-2">
                                <div class="col">
                                   <button class="btn btn-warning w-100 mt-2" type="button" id="editar-${index}" onclick="editCustomer(${index})">Editar</button>
@@ -123,16 +123,16 @@ function showCustomers() {
     }
 }
 
-function limpiarFormularioPeliculas() {
-    inputTitulo.value = "";
-    inputEstreno.value = "";
-    inputGenero.value = "";
+function cleanFormCustomers() {
+    inputCustomer.value = "";
+    inputStreet.value = "";
+    inputPhone.value = "";
+    inputEmail.value = "";
     inputImagen.value = "";
-    inputSinopsis.value = "";
 }
 
 
-btnAgregar.addEventListener("click", guardarPelicula);
-btnBorrarTodo.addEventListener("click", borrarTodo);
+btnAdd.addEventListener("click", saveCustomer);
+btnEraseAll.addEventListener("click", eraseAll);
 
-mostrarPeliculas(); 
+showCustomers(); 
