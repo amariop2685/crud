@@ -121,12 +121,12 @@ function showCustomers() {
                       </div>
                       <div class="col-md-8">
                          <div class="card-body">
-                            <h5 class="card-title">${customer.nameCustomer}</h5>
-                            <h6 class="card-subtitle mb-2 text-body-secondary">${customer.street} - ${customer.phone}</h6>
-                            <p class="card-text">${customer.emailCustomer}</p>
-                            <p class="card-text">${customer.nameContact}</p>
-                            <p class="card-text">${customer.industry}</p>
-                            <p class="card-text">${customer.description}</p>
+                            <h5 class="card-title">${'Nombre: '+customer.nameCustomer}</h5>
+                            <h6 class="card-subtitle mb-2 text-body-secondary">${'Dirección: '+customer.street} - ${customer.phone}</h6>
+                            <p class="card-text">${'Email: '+customer.emailCustomer}</p>
+                            <p class="card-text">${'Contacto: '+customer.nameContact}</p>
+                            <p class="card-text">${'Rubro: '+customer.industry}</p>
+                            <p class="card-text">${'Descripción: '+customer.description}</p>
                             <div class="row mb-2">
                                <div class="col">
                                   <button class="btn btn-warning w-100 mt-2" type="button" id="editar-${index}" onclick="editCustomer(${index})">Actualizar/Editar</button>
