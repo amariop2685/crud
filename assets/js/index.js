@@ -7,6 +7,12 @@ const inputStreet = document.getElementById("inputStreet");
 const inputPhone = document.getElementById("inputPhone");
 const inputEmail = document.getElementById("inputEmail");
 const inputImagen = document.getElementById("inputImagen");
+const inputIndustry = document.getElementById("inputIndustry");
+const inputNameContact = document.getElementById("inputNameContact");
+const inputDescription = document.getElementById("inputDescription");
+
+
+
 
 // Estas son las referencias a mis botones
 const btnAdd = document.getElementById("btnAdd");
@@ -18,12 +24,15 @@ const alertNoCustomers = document.getElementById("alertNoCustomers");
 let indexEdit = null;
 
 class Customer {
-    constructor(nameCustomer, street, phone, emailCustomer, imagen) {
+    constructor(nameCustomer, street, phone, emailCustomer, imagen, industry, nameContact, description) {
         this.nameCustomer = nameCustomer;
         this.street = street;
         this.phone = phone;
         this.emailCustomer = emailCustomer;
         this.imagen = imagen;
+        this.industry = industry;
+        this.nameContact = nameContact;
+        this.description = description;
     }
 }
 
@@ -34,13 +43,19 @@ function saveCustomer() {
     let phone = inputPhone.value;
     let emailCustomer = inputEmail.value;
     let imagen = inputImagen.value;
+    let industry = inputIndustry.value;
+    let nameContact = inputNameContact.value;
+    let description = inputDescription.value;
 
     let customer = new Customer(
         nameCustomer,
         street,
         phone,
         emailCustomer,
-        imagen
+        imagen,
+        industry,
+        nameContact,
+        description
     );
     console.log(customer);
 
