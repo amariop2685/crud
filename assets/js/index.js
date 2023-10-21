@@ -123,6 +123,7 @@ function showCustomers() {
                          <div class="card-body">
                             <h5 class="card-title">${customer.nameCustomer}</h5>
                             <h6 class="card-subtitle mb-2 text-body-secondary">${customer.street} - ${customer.phone}</h6>
+                            <p class="card-text">${customer.emailCustomer}</p>
                             <p class="card-text">${customer.nameContact}</p>
                             <p class="card-text">${customer.industry}</p>
                             <p class="card-text">${customer.description}</p>
